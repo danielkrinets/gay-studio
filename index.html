@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-<title>🎂 יום הולדת</title>
+<title>🎂 יום הולדת של דניאל</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
 <style>
-/* ════════════════════════════════════════
+/* 
    RESET
-════════════════════════════════════════ */
+ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ════════════════════════════════════════
+/* 
    AQUA TOKENS
-════════════════════════════════════════ */
+ */
 :root {
   --bg-top:    #b8ceea;
   --bg-bot:    #d8e8f8;
@@ -48,9 +48,8 @@ html, body {
   overflow-x: hidden;
 }
 
-/* ════════════════════════════════════════
-   AQUA WINDOW (карточка)
-════════════════════════════════════════ */
+   /*AQUA WINDOW*/
+
 .window {
   width: 100%;
   max-width: 420px;
@@ -110,9 +109,9 @@ html, body {
   position: relative;
 }
 
-/* ════════════════════════════════════════
+/* 
    LAYOUT
-════════════════════════════════════════ */
+ */
 .app {
   min-height: 100vh;
   display: flex;
@@ -135,9 +134,9 @@ html, body {
   to   { opacity: 1; transform: none; }
 }
 
-/* ════════════════════════════════════════
-   AQUA BUTTON (глянец)
-════════════════════════════════════════ */
+/*
+   AQUA BUTTON
+*/
 .btn {
   display: block;
   width: 100%;
@@ -202,9 +201,9 @@ html, body {
 }
 .btn:last-child { margin-bottom: 0; }
 
-/* ════════════════════════════════════════
+/* 
    TYPOGRAPHY
-════════════════════════════════════════ */
+ */
 .win-icon { font-size: 3rem; text-align: center; margin-bottom: 0.5rem; display: block; }
 .win-title {
   font-size: clamp(1.4rem, 5vw, 1.9rem);
@@ -227,9 +226,9 @@ html, body {
   margin: 1.1rem 0;
 }
 
-/* ════════════════════════════════════════
+/* 
    DETAIL PILLS
-════════════════════════════════════════ */
+ */
 .pills {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -248,9 +247,9 @@ html, body {
 }
 .pill strong { display: block; font-size: 0.9rem; color: var(--text); font-weight: 700; margin-top: 0.2rem; }
 
-/* ════════════════════════════════════════
+/* 
    FORM
-════════════════════════════════════════ */
+ */
 .form-row { margin-bottom: 0.8rem; text-align: right; }
 label { display: block; font-size: 0.73rem; font-weight: 700; color: var(--sub); margin-bottom: 0.28rem; letter-spacing: 0.04em; }
 input, select, textarea {
@@ -274,9 +273,9 @@ input:focus, select:focus, textarea:focus {
 textarea { resize: none; height: 70px; }
 select option { background: #e8f0fe; }
 
-/* ════════════════════════════════════════
+/*
    STEP 1: ГЛАВНОЕ МЕНЮ
-════════════════════════════════════════ */
+*/
 .menu-logo {
   text-align: center;
   margin-bottom: 1.2rem;
@@ -285,9 +284,9 @@ select option { background: #e8f0fe; }
 .menu-logo h1 { font-size: 1.5rem; font-weight: 900; margin-top: 0.3rem; }
 .menu-logo p  { font-size: 0.8rem; color: var(--sub); margin-top: 0.15rem; }
 
-/* ════════════════════════════════════════
+/*
    STEP 3: УБЕГАЮЩАЯ КНОПКА
-════════════════════════════════════════ */
+*/
 .respect-area {
   position: relative;
   height: 90px;
@@ -309,9 +308,9 @@ select option { background: #e8f0fe; }
   margin-top: 0.4rem;
 }
 
-/* ════════════════════════════════════════
+/*
    STEP 5: ПОДАРОК
-════════════════════════════════════════ */
+*/
 .smirk {
   font-size: 2.8rem;
   display: block;
@@ -324,9 +323,9 @@ select option { background: #e8f0fe; }
   50%      { transform: rotate( 4deg) scale(1.08); }
 }
 
-/* ════════════════════════════════════════
+/*
    ПРОГРЕСС ТОЧКИ
-════════════════════════════════════════ */
+*/
 .dots {
   display: flex;
   justify-content: center;
@@ -342,9 +341,9 @@ select option { background: #e8f0fe; }
 .dot.done   { background: #4a90d9; }
 .dot.active { background: #1a4a90; transform: scale(1.4); }
 
-/* ════════════════════════════════════════
+/*
    NOTE BOX
-════════════════════════════════════════ */
+*/
 .note {
   background: rgba(255,255,160,0.55);
   border: 1px solid rgba(200,180,40,0.4);
@@ -357,9 +356,9 @@ select option { background: #e8f0fe; }
   text-align: right;
 }
 
-/* ════════════════════════════════════════
+/*
    CONFETTI
-════════════════════════════════════════ */
+*/
 .cp {
   position: fixed;
   width: 8px; height: 8px;
@@ -377,16 +376,16 @@ select option { background: #e8f0fe; }
 <body>
 <div class="app">
 
-<!-- ══════════════════════════════════
+<!--
      ШАГ 1: ГЛАВНОЕ МЕНЮ
-══════════════════════════════════ -->
+-->
 <div class="step active" id="s1">
   <div class="window">
     <div class="titlebar">
       <div class="tf tf-red"></div>
       <div class="tf tf-yel"></div>
       <div class="tf tf-grn"></div>
-      <span class="titlebar-title">יום הולדת OS</span>
+      <span class="titlebar-title">יום הולדת</span>
     </div>
     <div class="win-body">
       <div class="menu-logo">
@@ -400,9 +399,9 @@ select option { background: #e8f0fe; }
   </div>
 </div>
 
-<!-- ══════════════════════════════════
+<!--
      ШАГ 2: ПРИГЛАШЕНИЕ
-══════════════════════════════════ -->
+ -->
 <div class="step" id="s2">
   <div class="window">
     <div class="titlebar">
@@ -436,9 +435,9 @@ select option { background: #e8f0fe; }
   </div>
 </div>
 
-<!-- ══════════════════════════════════
+<!--
      ШАГ 3: УВАЖЕНИЕ (убегающая кнопка)
-══════════════════════════════════ -->
+-->
 <div class="step" id="s3">
   <div class="window">
     <div class="titlebar">
@@ -464,9 +463,9 @@ select option { background: #e8f0fe; }
   </div>
 </div>
 
-<!-- ══════════════════════════════════
+<!--
      ШАГ 4: ПОДАРОК
-══════════════════════════════════ -->
+-->
 <div class="step" id="s4">
   <div class="window">
     <div class="titlebar">
@@ -492,9 +491,9 @@ select option { background: #e8f0fe; }
   </div>
 </div>
 
-<!-- ══════════════════════════════════
+<!--
      ШАГ 5: ФОРМА
-══════════════════════════════════ -->
+-->
 <div class="step" id="s5">
   <div class="window">
     <div class="titlebar">
@@ -550,9 +549,9 @@ select option { background: #e8f0fe; }
   </div>
 </div>
 
-<!-- ══════════════════════════════════
+<!--
      ШАГ 6: ФИНАЛ
-══════════════════════════════════ -->
+-->
 <div class="step" id="s6">
   <div class="window">
     <div class="titlebar">
@@ -578,17 +577,17 @@ select option { background: #e8f0fe; }
 </div><!-- /app -->
 
 <script>
-/* ════════════════════════════════════
+/*
    СОСТОЯНИЕ
-════════════════════════════════════ */
+*/
 const st = {
   fn:'', ln:'', coming:'', allergy:'none',
   allergyNote:'', notes:'', gift: null
 };
 
-/* ════════════════════════════════════
+/* 
    НАВИГАЦИЯ
-════════════════════════════════════ */
+ */
 function go(n) {
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
   document.getElementById('s'+n).classList.add('active');
@@ -597,9 +596,9 @@ function go(n) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/* ════════════════════════════════════
+/* 
    УБЕГАЮЩАЯ КНОПКА
-════════════════════════════════════ */
+ */
 const noTexts = ['לא 😈','ממש לא 😏','נסה שוב 😂','בשום אופן!','לעולם לא 🤣'];
 let escCount = 0;
 
@@ -636,25 +635,25 @@ function runAway(e) {
   }
 }
 
-/* ════════════════════════════════════
+/*
    ПОДАРОК
-════════════════════════════════════ */
+*/
 function setGift(v) {
   st.gift = v;
   go(5);
 }
 
-/* ════════════════════════════════════
+/*
    АЛЛЕРГИЯ
-════════════════════════════════════ */
+*/
 function toggleAllergyNote() {
   const v = document.getElementById('allergy').value;
   document.getElementById('allergyNoteRow').style.display = v === 'other' ? 'block' : 'none';
 }
 
-/* ════════════════════════════════════
+/*
    ОТПРАВКА ФОРМЫ
-════════════════════════════════════ */
+*/
 function submitForm() {
   st.fn   = document.getElementById('fName').value.trim();
   st.ln   = document.getElementById('lName').value.trim();
@@ -688,9 +687,9 @@ function submitForm() {
   go(6);
 }
 
-/* ════════════════════════════════════
+/*
    WHATSAPP (красивое сообщение)
-════════════════════════════════════ */
+*/
 function openWA(e) {
   e.preventDefault();
   const phone = '972544570982';
@@ -723,9 +722,9 @@ function openWA(e) {
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
-/* ════════════════════════════════════
+/*
    КОНФЕТТИ
-════════════════════════════════════ */
+*/
 function confetti() {
   const cols = ['#4a90d9','#f5c842','#4ade80','#f87171','#a78bfa','#60a5fa'];
   for (let i = 0; i < 55; i++) {
