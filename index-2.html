@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>🎂 יום הולדת</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+<style>
+/* ════════════════════════════════════════
+   RESET
+════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ════════════════════════════════════════
+   AQUA TOKENS
+════════════════════════════════════════ */
+:root {
+  --bg-top:    #b8ceea;
+  --bg-bot:    #d8e8f8;
+  --win-top:   #e2ecf8;
+  --win-bot:   #f0f6ff;
+  --stripe:    rgba(255,255,255,0.55);
+
+  --btn-top:   #7db4e8;
+  --btn-mid:   #4a90d9;
+  --btn-bot:   #2a6ab8;
+  --btn-shine: rgba(255,255,255,0.75);
+  --btn-text:  #fff;
+  --btn-shad:  rgba(30,70,140,0.4);
+
+  --green-top: #82d96a;
+  --green-bot: #3aaf1a;
+  --red-top:   #f08080;
+  --red-bot:   #d02020;
+
+  --text:      #1a2a40;
+  --sub:       #4a6080;
+  --border:    rgba(120,160,210,0.5);
+
+  --r: 14px;
+}
+
+html, body {
+  min-height: 100vh;
+  font-family: 'Heebo', 'Helvetica Neue', Arial, sans-serif;
+  background: linear-gradient(160deg, var(--bg-top), var(--bg-bot));
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ════════════════════════════════════════
+   AQUA WINDOW (карточка)
+════════════════════════════════════════ */
+.window {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, var(--win-top) 0%, var(--win-bot) 100%);
+  border-radius: 18px;
+  border: 1.5px solid rgba(255,255,255,0.9);
+  box-shadow:
+    0 2px 0   rgba(255,255,255,0.8) inset,
+    0 20px 60px rgba(30,70,140,0.22),
+    0 2px 8px  rgba(30,70,140,0.18);
+  overflow: hidden;
+}
+
+/* Titlebar */
+.titlebar {
+  height: 36px;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.5) 0%,
+    rgba(180,210,240,0.6) 50%,
+    rgba(150,190,230,0.4) 100%
+  );
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 7px;
+  position: relative;
+}
+.titlebar-title {
+  position: absolute;
+  left: 50%; transform: translateX(-50%);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--sub);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+/* Светофор */
+.tf { width: 13px; height: 13px; border-radius: 50%; cursor: pointer; flex-shrink: 0; }
+.tf-red   { background: radial-gradient(circle at 35% 35%, #ff8a8a, #d02020); box-shadow: 0 0 0 1px rgba(180,20,20,0.4); }
+.tf-yel   { background: radial-gradient(circle at 35% 35%, #ffe98a, #d0a020); box-shadow: 0 0 0 1px rgba(180,130,20,0.4); }
+.tf-grn   { background: radial-gradient(circle at 35% 35%, #8aff8a, #20a020); box-shadow: 0 0 0 1px rgba(20,130,20,0.4); }
+
+/* Полоса-блик на всём окне */
+.window-shine {
+  position: absolute;
+  top: 36px; left: 0; right: 0;
+  height: 60px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.35), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.win-body {
+  padding: 2rem 1.6rem 1.8rem;
+  position: relative;
+}
+
+/* ════════════════════════════════════════
+   LAYOUT
+════════════════════════════════════════ */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 1rem;
+  gap: 1.2rem;
+}
+
+.step { display: none; width: 100%; }
+.step.active { display: block; }
+
+/* Анимация появления */
+.step.active .window {
+  animation: popIn 0.35s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.93) translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ════════════════════════════════════════
+   AQUA BUTTON (глянец)
+════════════════════════════════════════ */
+.btn {
+  display: block;
+  width: 100%;
+  font-family: 'Heebo', sans-serif;
+  font-size: 0.97rem;
+  font-weight: 700;
+  padding: 0.65rem 1.2rem;
+  border-radius: 999px;
+  border: 1.5px solid rgba(30,80,160,0.35);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+  color: var(--btn-text);
+  background: linear-gradient(180deg,
+    var(--btn-top) 0%,
+    var(--btn-mid) 50%,
+    var(--btn-bot) 100%
+  );
+  box-shadow:
+    0 1px 0 var(--btn-shine) inset,
+    0 4px 12px var(--btn-shad),
+    0 1px 3px rgba(0,0,0,0.2);
+  transition: filter 0.12s, transform 0.1s;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.6rem;
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 50%;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.55),
+    rgba(255,255,255,0.08)
+  );
+  border-radius: 999px 999px 0 0;
+  pointer-events: none;
+}
+.btn:hover  { filter: brightness(1.08); transform: translateY(-1px); }
+.btn:active { filter: brightness(0.95); transform: translateY(1px); box-shadow: 0 1px 0 var(--btn-shine) inset, 0 2px 6px var(--btn-shad); }
+
+.btn-green {
+  background: linear-gradient(180deg, var(--green-top), var(--green-bot));
+  border-color: rgba(20,100,20,0.35);
+}
+.btn-red {
+  background: linear-gradient(180deg, var(--red-top), var(--red-bot));
+  border-color: rgba(120,20,20,0.35);
+}
+.btn-wa {
+  background: linear-gradient(180deg, #6ed660, #25a244);
+  border-color: rgba(20,100,40,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  text-decoration: none;
+  color: #fff;
+}
+.btn:last-child { margin-bottom: 0; }
+
+/* ════════════════════════════════════════
+   TYPOGRAPHY
+════════════════════════════════════════ */
+.win-icon { font-size: 3rem; text-align: center; margin-bottom: 0.5rem; display: block; }
+.win-title {
+  font-size: clamp(1.4rem, 5vw, 1.9rem);
+  font-weight: 900;
+  color: var(--text);
+  text-align: center;
+  margin-bottom: 0.35rem;
+  line-height: 1.2;
+}
+.win-sub {
+  font-size: 0.88rem;
+  color: var(--sub);
+  text-align: center;
+  line-height: 1.65;
+  margin-bottom: 1.4rem;
+}
+.hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.1rem 0;
+}
+
+/* ════════════════════════════════════════
+   DETAIL PILLS
+════════════════════════════════════════ */
+.pills {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+.pill {
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(180,210,240,0.8);
+  border-radius: 10px;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset;
+  padding: 0.7rem 0.4rem;
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--sub);
+}
+.pill strong { display: block; font-size: 0.9rem; color: var(--text); font-weight: 700; margin-top: 0.2rem; }
+
+/* ════════════════════════════════════════
+   FORM
+════════════════════════════════════════ */
+.form-row { margin-bottom: 0.8rem; text-align: right; }
+label { display: block; font-size: 0.73rem; font-weight: 700; color: var(--sub); margin-bottom: 0.28rem; letter-spacing: 0.04em; }
+input, select, textarea {
+  width: 100%;
+  font-family: 'Heebo', sans-serif;
+  font-size: 0.93rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 8px;
+  border: 1.5px solid rgba(140,180,220,0.7);
+  background: rgba(255,255,255,0.75);
+  color: var(--text);
+  direction: rtl;
+  outline: none;
+  box-shadow: 0 1px 3px rgba(30,70,140,0.08) inset;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: #4a90d9;
+  box-shadow: 0 0 0 3px rgba(74,144,217,0.2), 0 1px 3px rgba(30,70,140,0.08) inset;
+}
+textarea { resize: none; height: 70px; }
+select option { background: #e8f0fe; }
+
+/* ════════════════════════════════════════
+   STEP 1: ГЛАВНОЕ МЕНЮ
+════════════════════════════════════════ */
+.menu-logo {
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+.menu-logo .big-emoji { font-size: 4rem; display: block; }
+.menu-logo h1 { font-size: 1.5rem; font-weight: 900; margin-top: 0.3rem; }
+.menu-logo p  { font-size: 0.8rem; color: var(--sub); margin-top: 0.15rem; }
+
+/* ════════════════════════════════════════
+   STEP 3: УБЕГАЮЩАЯ КНОПКА
+════════════════════════════════════════ */
+.respect-area {
+  position: relative;
+  height: 90px;
+  margin: 0.5rem 0 1rem;
+}
+.btn-run {
+  position: absolute;
+  width: auto;
+  padding: 0.55rem 1.3rem;
+  font-size: 0.88rem;
+  display: inline-block;
+  transition: left 0.18s cubic-bezier(.34,1.56,.64,1), top 0.18s cubic-bezier(.34,1.56,.64,1), opacity 0.3s;
+}
+.btn-run.gone { opacity: 0; pointer-events: none; }
+.ghost-msg {
+  font-size: 0.75rem;
+  color: var(--sub);
+  text-align: center;
+  margin-top: 0.4rem;
+}
+
+/* ════════════════════════════════════════
+   STEP 5: ПОДАРОК
+════════════════════════════════════════ */
+.smirk {
+  font-size: 2.8rem;
+  display: block;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  animation: wobble 2s ease-in-out infinite;
+}
+@keyframes wobble {
+  0%,100% { transform: rotate(-4deg) scale(1);   }
+  50%      { transform: rotate( 4deg) scale(1.08); }
+}
+
+/* ════════════════════════════════════════
+   ПРОГРЕСС ТОЧКИ
+════════════════════════════════════════ */
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-bottom: 0.9rem;
+}
+.dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(30,70,140,0.15);
+  transition: all 0.25s;
+}
+.dot.done   { background: #4a90d9; }
+.dot.active { background: #1a4a90; transform: scale(1.4); }
+
+/* ════════════════════════════════════════
+   NOTE BOX
+════════════════════════════════════════ */
+.note {
+  background: rgba(255,255,160,0.55);
+  border: 1px solid rgba(200,180,40,0.4);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.8rem;
+  color: #5a4a10;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  text-align: right;
+}
+
+/* ════════════════════════════════════════
+   CONFETTI
+════════════════════════════════════════ */
+.cp {
+  position: fixed;
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 999;
+  animation: fall var(--d) ease-in var(--del) both;
+}
+@keyframes fall {
+  0%   { transform: translateX(0) rotate(0deg);   opacity: 1; }
+  100% { transform: translateX(var(--tx)) rotate(600deg) translateY(100vh); opacity: 0; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- ══════════════════════════════════
+     ШАГ 1: ГЛАВНОЕ МЕНЮ
+══════════════════════════════════ -->
+<div class="step active" id="s1">
+  <div class="window">
+    <div class="titlebar">
+      <div class="tf tf-red"></div>
+      <div class="tf tf-yel"></div>
+      <div class="tf tf-grn"></div>
+      <span class="titlebar-title">יום הולדת OS</span>
+    </div>
+    <div class="win-body">
+      <div class="menu-logo">
+        <span class="big-emoji">🎂</span>
+        <h1>ברוך הבא!</h1>
+        <p>בחר מה לעשות</p>
+      </div>
+      <button class="btn" onclick="go(2)">📬 לפתוח הזמנה</button>
+      <button class="btn btn-green" onclick="go(3)">✅ לאשר הגעה</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     ШАГ 2: ПРИГЛАШЕНИЕ
+══════════════════════════════════ -->
+<div class="step" id="s2">
+  <div class="window">
+    <div class="titlebar">
+      <div class="tf tf-red" onclick="go(1)"></div>
+      <div class="tf tf-yel"></div>
+      <div class="tf tf-grn"></div>
+      <span class="titlebar-title">הזמנה.rtf</span>
+    </div>
+    <div class="win-body">
+      <div class="dots">
+        <div class="dot done"></div><div class="dot active"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+      <span class="win-icon">🎉</span>
+      <h2 class="win-title">הזמנה ליום ההולדת שלי!</h2>
+      <p class="win-sub">
+        אני מזמין אותך לחגוג איתי. נשב יחד, נאכל המבורגרים
+        משובחים ונהנה מאווירה טובה. הנוכחות שלך היא המתנה הכי גדולה בשבילי 💛
+      </p>
+      <div class="pills">
+        <div class="pill">📅 תאריך<strong>21 ביוני</strong></div>
+        <div class="pill">🕡 שעה<strong>18:30</strong></div>
+        <div class="pill">📍 כתובת<strong>קצרין 5</strong></div>
+      </div>
+      <div class="note">
+        ℹ️ אשמח לאישור הגעה עד <strong>19 ביוני</strong>. אם יש לך אלרגיות, ציין בשלב הבא.
+      </div>
+      <button class="btn btn-green" onclick="go(3)">לאשר הגעה ←</button>
+      <button class="btn" onclick="go(1)" style="background:linear-gradient(180deg,#c8d8f0,#a0b8d8);border-color:rgba(80,120,180,0.3);color:var(--sub);text-shadow:none;">חזרה לתפריט</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     ШАГ 3: УВАЖЕНИЕ (убегающая кнопка)
+══════════════════════════════════ -->
+<div class="step" id="s3">
+  <div class="window">
+    <div class="titlebar">
+      <div class="tf tf-red" onclick="go(1)"></div>
+      <div class="tf tf-yel"></div>
+      <div class="tf tf-grn"></div>
+      <span class="titlebar-title">שאלה חשובה מאוד</span>
+    </div>
+    <div class="win-body">
+      <div class="dots">
+        <div class="dot done"></div><div class="dot done"></div>
+        <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+      <span class="win-icon">🤔</span>
+      <h2 class="win-title">אתה מכבד אותי?</h2>
+      <p class="win-sub">לפני שממשיכים, צריך לענות על השאלה הכי חשובה בעולם</p>
+      <div class="respect-area" id="rArea">
+        <button class="btn btn-green" style="position:absolute;right:0;top:50%;transform:translateY(-50%);width:48%;" onclick="go(4)">כן בטח! 😄</button>
+        <button class="btn btn-red btn-run" id="noBtn" style="left:0;top:50%;transform:translateY(-50%);width:44%;" onmouseenter="runAway()" ontouchstart="runAway(event)">לא 😈</button>
+      </div>
+      <p class="ghost-msg" id="noMsg"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     ШАГ 4: ПОДАРОК
+══════════════════════════════════ -->
+<div class="step" id="s4">
+  <div class="window">
+    <div class="titlebar">
+      <div class="tf tf-red" onclick="go(1)"></div>
+      <div class="tf tf-yel"></div>
+      <div class="tf tf-grn"></div>
+      <span class="titlebar-title">בקשה דחופה</span>
+    </div>
+    <div class="win-body">
+      <div class="dots">
+        <div class="dot done"></div><div class="dot done"></div>
+        <div class="dot done"></div><div class="dot active"></div><div class="dot"></div>
+      </div>
+      <span class="smirk">😏</span>
+      <h2 class="win-title">אז... מביא מתנה?</h2>
+      <p class="win-sub">
+        בבקשה בבקשה בבקשה 🥺<br/>
+        אם כן, עזור לי להיות מוכן נפשית...
+      </p>
+      <button class="btn btn-green" onclick="setGift(true)">כן, מביא! 🎁</button>
+      <button class="btn" style="background:linear-gradient(180deg,#d0d8e8,#b0b8c8);border-color:rgba(80,100,140,0.3);color:#446;text-shadow:none;" onclick="setGift(false)">לא, בא בלי 😇</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     ШАГ 5: ФОРМА
+══════════════════════════════════ -->
+<div class="step" id="s5">
+  <div class="window">
+    <div class="titlebar">
+      <div class="tf tf-red" onclick="go(1)"></div>
+      <div class="tf tf-yel"></div>
+      <div class="tf tf-grn"></div>
+      <span class="titlebar-title">טופס אישור הגעה</span>
+    </div>
+    <div class="win-body">
+      <div class="dots">
+        <div class="dot done"></div><div class="dot done"></div>
+        <div class="dot done"></div><div class="dot done"></div><div class="dot active"></div>
+      </div>
+      <h2 class="win-title" style="margin-bottom:1rem;">כמה פרטים קטנים 📋</h2>
+      <div class="form-row">
+        <label>שם פרטי</label>
+        <input type="text" id="fName" placeholder="למשל: דניאל"/>
+      </div>
+      <div class="form-row">
+        <label>שם משפחה</label>
+        <input type="text" id="lName" placeholder="למשל: כהן"/>
+      </div>
+      <div class="form-row">
+        <label>האם אתה מגיע?</label>
+        <select id="coming">
+          <option value="">בחר...</option>
+          <option value="yes">כן, מגיע! 🙌</option>
+          <option value="maybe">אולי, אעדכן</option>
+          <option value="no">לא יכול 😢</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>אלרגיות למזון</label>
+        <select id="allergy" onchange="toggleAllergyNote()">
+          <option value="none">אין לי אלרגיות</option>
+          <option value="gluten">גלוטן</option>
+          <option value="lactose">לקטוז</option>
+          <option value="nuts">אגוזים</option>
+          <option value="veg">צמחוני / טבעוני</option>
+          <option value="other">אחר</option>
+        </select>
+      </div>
+      <div class="form-row" id="allergyNoteRow" style="display:none;">
+        <label>פרט את הרגישות</label>
+        <textarea id="allergyNote" placeholder="למשל: לא אוכל בשר..."></textarea>
+      </div>
+      <div class="form-row">
+        <label>הערות נוספות (אופציונלי)</label>
+        <textarea id="notes" placeholder="כל מה שתרצה שאדע..."></textarea>
+      </div>
+      <button class="btn btn-green" onclick="submitForm()">שלח אישור 🎉</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     ШАГ 6: ФИНАЛ
+══════════════════════════════════ -->
+<div class="step" id="s6">
+  <div class="window">
+    <div class="titlebar">
+      <div class="tf tf-red" onclick="go(1)"></div>
+      <div class="tf tf-yel"></div>
+      <div class="tf tf-grn"></div>
+      <span class="titlebar-title">הכל מוכן!</span>
+    </div>
+    <div class="win-body" style="text-align:center;">
+      <span class="win-icon" id="finalIcon">🎉</span>
+      <h2 class="win-title" id="finalTitle">תודה רבה!</h2>
+      <p class="win-sub" id="finalSub">כיף שאתה בא!</p>
+      <div class="hr"></div>
+      <p style="font-size:0.8rem;color:var(--sub);margin-bottom:0.8rem;">שלח לי אישור בוואטסאפ:</p>
+      <a id="waLink" href="#" class="btn btn-wa" onclick="openWA(event)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        שלח בוואטסאפ
+      </a>
+    </div>
+  </div>
+</div>
+
+</div><!-- /app -->
+
+<script>
+/* ════════════════════════════════════
+   СОСТОЯНИЕ
+════════════════════════════════════ */
+const st = {
+  fn:'', ln:'', coming:'', allergy:'none',
+  allergyNote:'', notes:'', gift: null
+};
+
+/* ════════════════════════════════════
+   НАВИГАЦИЯ
+════════════════════════════════════ */
+function go(n) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+  // Сброс убегающей кнопки при повторном заходе
+  if (n === 3) resetNo();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ════════════════════════════════════
+   УБЕГАЮЩАЯ КНОПКА
+════════════════════════════════════ */
+const noTexts = ['לא 😈','ממש לא 😏','נסה שוב 😂','בשום אופן!','לעולם לא 🤣'];
+let escCount = 0;
+
+function resetNo() {
+  escCount = 0;
+  const btn = document.getElementById('noBtn');
+  btn.classList.remove('gone');
+  btn.textContent = noTexts[0];
+  btn.style.left = '0px';
+  btn.style.top  = '50%';
+  btn.style.transform = 'translateY(-50%)';
+  document.getElementById('noMsg').textContent = '';
+}
+
+function runAway(e) {
+  if (e) e.preventDefault();
+  const btn  = document.getElementById('noBtn');
+  const wrap = document.getElementById('rArea');
+  const bw   = btn.offsetWidth  || 130;
+  const bh   = btn.offsetHeight || 42;
+  const maxX = wrap.offsetWidth  - bw;
+  const maxY = wrap.offsetHeight - bh;
+  const nx   = Math.random() * maxX;
+  const ny   = Math.random() * maxY;
+  btn.style.left      = nx + 'px';
+  btn.style.top       = ny + 'px';
+  btn.style.transform = 'none';
+  escCount++;
+  if (escCount < noTexts.length) {
+    btn.textContent = noTexts[escCount];
+  } else {
+    btn.classList.add('gone');
+    document.getElementById('noMsg').textContent = 'הכפתור ברח... כי בעצם אתה כן מכבד 😂';
+  }
+}
+
+/* ════════════════════════════════════
+   ПОДАРОК
+════════════════════════════════════ */
+function setGift(v) {
+  st.gift = v;
+  go(5);
+}
+
+/* ════════════════════════════════════
+   АЛЛЕРГИЯ
+════════════════════════════════════ */
+function toggleAllergyNote() {
+  const v = document.getElementById('allergy').value;
+  document.getElementById('allergyNoteRow').style.display = v === 'other' ? 'block' : 'none';
+}
+
+/* ════════════════════════════════════
+   ОТПРАВКА ФОРМЫ
+════════════════════════════════════ */
+function submitForm() {
+  st.fn   = document.getElementById('fName').value.trim();
+  st.ln   = document.getElementById('lName').value.trim();
+  st.coming = document.getElementById('coming').value;
+  st.allergy = document.getElementById('allergy').value;
+  st.allergyNote = document.getElementById('allergyNote').value.trim();
+  st.notes = document.getElementById('notes').value.trim();
+
+  if (!st.fn || !st.ln) { alert('אנא מלא שם פרטי ושם משפחה 😊'); return; }
+  if (!st.coming)        { alert('אנא בחר האם אתה מגיע'); return; }
+
+  const icon  = document.getElementById('finalIcon');
+  const title = document.getElementById('finalTitle');
+  const sub   = document.getElementById('finalSub');
+
+  if (st.coming === 'yes') {
+    icon.textContent  = '🎉';
+    title.textContent = `יאלה ${st.fn}!`;
+    sub.textContent   = 'כיף שאתה בא, תראה אותך ב-21!';
+    confetti();
+  } else if (st.coming === 'maybe') {
+    icon.textContent  = '🤔';
+    title.textContent = `אוקיי ${st.fn}`;
+    sub.textContent   = 'עדכן אותי עד ה-19 ביוני!';
+  } else {
+    icon.textContent  = '😢';
+    title.textContent = `חבל ${st.fn}...`;
+    sub.textContent   = 'אם תשנה את דעתך, אני כאן!';
+  }
+
+  go(6);
+}
+
+/* ════════════════════════════════════
+   WHATSAPP (красивое сообщение)
+════════════════════════════════════ */
+function openWA(e) {
+  e.preventDefault();
+  const phone = '972544570982';
+
+  const comingLabel = st.coming === 'yes' ? 'מגיע ✅'
+                    : st.coming === 'maybe' ? 'אולי מגיע 🤔'
+                    : 'לא יכול ❌';
+
+  const allergyNames = {
+    none:'אין','gluten':'גלוטן','lactose':'לקטוז',
+    nuts:'אגוזים','veg':'צמחוני/טבעוני','other':st.allergyNote || 'אחר'
+  };
+  const allergyLabel = allergyNames[st.allergy] || 'אין';
+  const giftLabel    = st.gift === true ? 'כן 🎁' : st.gift === false ? 'לא 😇' : 'לא ציין';
+  const notesLine    = st.notes ? `\n📝 הערות: ${st.notes}` : '';
+
+  const msg =
+`🎂 אישור הגעה ליום הולדת
+
+👤 שם: ${st.fn} ${st.ln}
+📅 תאריך: 21 ביוני בשעה 18:30
+📍 מיקום: קצרין 5
+
+✅ הגעה: ${comingLabel}
+🥗 אלרגיות: ${allergyLabel}
+🎁 מביא מתנה: ${giftLabel}${notesLine}
+
+נתראה! 🎉`;
+
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+/* ════════════════════════════════════
+   КОНФЕТТИ
+════════════════════════════════════ */
+function confetti() {
+  const cols = ['#4a90d9','#f5c842','#4ade80','#f87171','#a78bfa','#60a5fa'];
+  for (let i = 0; i < 55; i++) {
+    const el = document.createElement('div');
+    el.className = 'cp';
+    el.style.setProperty('--d',  (Math.random()*1.4+0.9)+'s');
+    el.style.setProperty('--del',(Math.random()*0.7)+'s');
+    el.style.setProperty('--tx', (Math.random()*200-100)+'px');
+    el.style.background = cols[Math.floor(Math.random()*cols.length)];
+    el.style.left = Math.random()*100+'vw';
+    el.style.top  = '-10px';
+    el.style.transform = `rotate(${Math.random()*360}deg)`;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 3000);
+  }
+}
+</script>
+</body>
+</html>
