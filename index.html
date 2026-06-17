@@ -708,17 +708,17 @@ function openWA(e) {
   const notesLine    = st.notes ? `\n📝 הערות: ${st.notes}` : '';
 
   const msg =
-`🎂 אישור הגעה ליום הולדת
+` אישור הגעה ליום הולדת
 
-👤 שם: ${st.fn} ${st.ln}
-📅 תאריך: 21 ביוני בשעה 18:30
-📍 מיקום: קצרין 5
+ שם: ${st.fn} ${st.ln}
+ תאריך: 21 ביוני בשעה 18:30
+ מיקום: קצרין 5
 
-✅ הגעה: ${comingLabel}
-🥗 אלרגיות: ${allergyLabel}
-🎁 מביא מתנה: ${giftLabel}${notesLine}
+ הגעה: ${comingLabel}
+ אלרגיות: ${allergyLabel}
+ מביא מתנה: ${giftLabel}${notesLine}
 
-נתראה! 🎉`;
+נתראה! `;
 
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
 }
