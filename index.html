@@ -290,14 +290,14 @@ nav{position:fixed;bottom:0;left:0;right:0;height:72px;background:rgba(248,244,2
   <div class="card">
     <div class="s-head" id="stAbout"></div>
     <div class="s-row"><div class="s-label">📞 050-659-8734</div><a href="tel:0506598734" class="btn btn-ghost btn-sm" id="stCall"></a></div>
-    <div class="s-row" style="border:none"><div class="s-label" style="display:flex;align-items:center;gap:8px"><img src="icons/land-plot.png" style="width:18px;height:18px;opacity:.6"> <span id="stLoc"></span></div></div>
+    <div class="s-row" style="border:none"><div class="s-label" style="display:flex;align-items:center;gap:8px"><img src="land-plot.png" style="width:18px;height:18px;opacity:.6"> <span id="stLoc"></span></div></div>
   </div>
 </div>
 
 <!-- ══ ADMIN ══ -->
 <div id="sAdmin" class="screen">
   <div id="adminLogin" class="adm-login">
-    <div style="margin-bottom:16px"><img src="icons/lock-keyhole.png" style="width:56px;height:56px;opacity:.7"></div>
+    <div style="margin-bottom:16px"><img src="lock-keyhole.png" style="width:56px;height:56px;opacity:.7"></div>
     <h2 style="margin-bottom:20px;font-size:22px" id="admLoginTitle"></h2>
     <div style="width:100%;max-width:320px">
       <div class="form-group"><label id="admPwdLbl"></label><input type="password" id="adminPwd" autocomplete="current-password"/></div>
@@ -311,11 +311,11 @@ nav{position:fixed;bottom:0;left:0;right:0;height:72px;background:rgba(248,244,2
       <button class="btn btn-ghost btn-sm" data-action="adminLogout" id="admLogoutBtn"></button>
     </div>
     <div class="adm-tabs">
-      <button class="adm-tab active" data-action="admTab" data-tab="bookings"><img class="tab-icn" src="icons/clipboard-pen-line.png"><br><span id="admTabBk"></span></button>
-      <button class="adm-tab" data-action="admTab" data-tab="accounts"><img class="tab-icn" src="icons/users.png"><br><span id="admTabAcc"></span></button>
-      <button class="adm-tab" data-action="admTab" data-tab="blacklist"><img class="tab-icn" src="icons/ban.png"><br><span id="admTabBl"></span></button>
-      <button class="adm-tab" data-action="admTab" data-tab="gallery"><img class="tab-icn" src="icons/images.png"><br><span id="admTabGal"></span></button>
-      <button class="adm-tab" data-action="admTab" data-tab="settings"><img class="tab-icn" src="icons/settings-2.png"><br><span id="admTabSet"></span></button>
+      <button class="adm-tab active" data-action="admTab" data-tab="bookings"><img class="tab-icn" src="clipboard-pen-line.png"><br><span id="admTabBk"></span></button>
+      <button class="adm-tab" data-action="admTab" data-tab="accounts"><img class="tab-icn" src="users.png"><br><span id="admTabAcc"></span></button>
+      <button class="adm-tab" data-action="admTab" data-tab="blacklist"><img class="tab-icn" src="ban.png"><br><span id="admTabBl"></span></button>
+      <button class="adm-tab" data-action="admTab" data-tab="gallery"><img class="tab-icn" src="images.png"><br><span id="admTabGal"></span></button>
+      <button class="adm-tab" data-action="admTab" data-tab="settings"><img class="tab-icn" src="settings-2.png"><br><span id="admTabSet"></span></button>
     </div>
     <!-- BOOKINGS -->
     <div id="tabBookings">
@@ -324,7 +324,7 @@ nav{position:fixed;bottom:0;left:0;right:0;height:72px;background:rgba(248,244,2
         <button class="btn btn-ghost btn-sm" data-action="filterBk" data-filter="pending" id="fPend"></button>
         <button class="btn btn-ghost btn-sm" data-action="filterBk" data-filter="confirmed" id="fConf"></button>
         <div style="flex:1"></div>
-        <button class="btn btn-ghost btn-sm" data-action="toggleBkView" id="viewToggleBtn" style="padding:8px 12px"><img class="bi" src="icons/monitor-play.png" id="viewToggleIcn"></button>
+        <button class="btn btn-ghost btn-sm" data-action="toggleBkView" id="viewToggleBtn" style="padding:8px 12px"><img class="bi" src="monitor-play.png" id="viewToggleIcn"></button>
       </div>
       <div id="bookingsList"></div>
       <div id="monitorBoard" class="monitor-board" style="display:none"></div>
@@ -389,11 +389,11 @@ nav{position:fixed;bottom:0;left:0;right:0;height:72px;background:rgba(248,244,2
 <!-- NAV -->
 <nav>
   <button class="nav-btn active" data-action="go" data-screen="sHome">
-    <img class="nav-icn" src="icons/house.png"><span id="navHome"></span>
+    <img class="nav-icn" src="house.png"><span id="navHome"></span>
     <span class="nav-dot" id="navDot"></span>
   </button>
   <button class="nav-btn" data-action="go" data-screen="sSettings">
-    <img class="nav-icn" src="icons/settings-2.png"><span id="navSettings"></span>
+    <img class="nav-icn" src="settings-2.png"><span id="navSettings"></span>
   </button>
 </nav>
 
@@ -911,7 +911,7 @@ function renderMonitor(){
     }).join('');
     return`<div class="mon-col">
       <div class="mon-col-hd" style="background:${col.bg}">
-        <img src="icons/${col.icon}.png" style="width:13px;height:13px;filter:invert(1) opacity(.9);flex-shrink:0">
+        <img src="${col.icon}.png" style="width:13px;height:13px;filter:invert(1) opacity(.9);flex-shrink:0">
         <span class="mon-label">${col.label}</span>
         <span class="mon-cnt">${col.items.length}</span>
       </div>
@@ -1051,7 +1051,7 @@ function onLogoTap(){
 /* ── UTILS ── */
 function $(id){return document.getElementById(id);}
 function $t(id,txt){const el=$(id);if(el&&typeof txt==='string')el.textContent=txt;}
-function ic(name,size=15){return `<img src="icons/${name}.png" style="width:${size}px;height:${size}px;object-fit:contain;vertical-align:middle;display:inline-block;flex-shrink:0">`;}
+function ic(name,size=15){return `<img src="${name}.png" style="width:${size}px;height:${size}px;object-fit:contain;vertical-align:middle;display:inline-block;flex-shrink:0">`;}
 const ICMAP={trash:'trash-2',phone:'phone',send:'send',check:'check-check',ban:'ban',note:'notepad-text',book:'book-open-text',upload:'folder-down',monitor:'monitor-play',list:'clipboard-pen-line',settings:'settings-2',users:'users',images:'images',lock:'lock-keyhole',home:'house',svc:'wand-sparkles',location:'land-plot',calendar:'waypoints'};
 function showToast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2800);}
 
