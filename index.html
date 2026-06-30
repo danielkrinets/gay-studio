@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="theme-color" content="#f5f1ec">
-<title>סטודיו גיא | Guy Zohari Nails</title>
+<title>Guy Nails | סטודיו גיא</title>
 <link rel="icon" href="logo.png" type="image/png">
 <link rel="apple-touch-icon" href="logo.png">
 <style>
@@ -35,8 +35,8 @@ nav{position:fixed;bottom:0;left:0;right:0;height:72px;background:rgba(248,244,2
 .nav-btn .icon{font-size:26px;transition:transform .2s cubic-bezier(.34,1.56,.64,1)}
 .nav-btn.active{color:var(--accent)}
 .nav-btn.active .icon{transform:scale(1.15) translateY(-1px)}
-.nav-icn{width:26px;height:26px;object-fit:contain;display:block;filter:grayscale(1) opacity(.55);transition:transform .2s cubic-bezier(.34,1.56,.64,1),filter .2s}
-.nav-btn.active .nav-icn{filter:none;transform:scale(1.15) translateY(-1px)}
+.nav-icn{width:26px;height:26px;display:block;opacity:.45;transition:transform .2s cubic-bezier(.34,1.56,.64,1),opacity .2s}
+.nav-btn.active .nav-icn{opacity:1;transform:scale(1.15) translateY(-1px)}
 .tab-icn{width:16px;height:16px;object-fit:contain;vertical-align:middle;display:inline-block;margin-bottom:2px;filter:opacity(.7)}
 .adm-tab.active .tab-icn{filter:invert(1) opacity(1)}
 .bi{width:15px;height:15px;object-fit:contain;vertical-align:middle;display:inline-block;flex-shrink:0}
@@ -289,7 +289,7 @@ nav{position:fixed;bottom:0;left:0;right:0;height:72px;background:rgba(248,244,2
   </div>
   <div class="card">
     <div class="s-head" id="stAbout"></div>
-    <div class="s-row"><div class="s-label">📞 050-659-8734</div><a href="tel:0506598734" class="btn btn-ghost btn-sm" id="stCall"></a></div>
+    <div class="s-row"><div class="s-label" style="display:flex;align-items:center;gap:7px"><img src="phone.png" style="width:16px;height:16px;opacity:.6"> 050-659-8734</div><a href="tel:0506598734" class="btn btn-ghost btn-sm" id="stCall"></a></div>
     <div class="s-row" style="border:none"><div class="s-label" style="display:flex;align-items:center;gap:8px"><img src="land-plot.png" style="width:18px;height:18px;opacity:.6"> <span id="stLoc"></span></div></div>
   </div>
 </div>
@@ -306,7 +306,7 @@ nav{position:fixed;bottom:0;left:0;right:0;height:72px;background:rgba(248,244,2
     </div>
   </div>
   <div id="adminDash" style="display:none">
-    <div class="ph"><h1>⚙️ <span id="admDashTitle"></span></h1></div>
+    <div class="ph"><h1><span id="admDashTitle"></span></h1></div>
     <div style="display:flex;justify-content:flex-end;padding:10px 16px">
       <button class="btn btn-ghost btn-sm" data-action="adminLogout" id="admLogoutBtn"></button>
     </div>
@@ -324,6 +324,7 @@ nav{position:fixed;bottom:0;left:0;right:0;height:72px;background:rgba(248,244,2
         <button class="btn btn-ghost btn-sm" data-action="filterBk" data-filter="pending" id="fPend"></button>
         <button class="btn btn-ghost btn-sm" data-action="filterBk" data-filter="confirmed" id="fConf"></button>
         <div style="flex:1"></div>
+        <button class="btn btn-ghost btn-sm" data-action="remindTmr" id="remindTmrBtn" style="padding:8px 12px;display:flex;align-items:center;gap:5px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> <span id="remindTmrLbl"></span></button>
         <button class="btn btn-ghost btn-sm" data-action="toggleBkView" id="viewToggleBtn" style="padding:8px 12px"><img class="bi" src="monitor-play.png" id="viewToggleIcn"></button>
       </div>
       <div id="bookingsList"></div>
@@ -389,11 +390,13 @@ nav{position:fixed;bottom:0;left:0;right:0;height:72px;background:rgba(248,244,2
 <!-- NAV -->
 <nav>
   <button class="nav-btn active" data-action="go" data-screen="sHome">
-    <img class="nav-icn" src="house.png"><span id="navHome"></span>
+    <svg class="nav-icn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span id="navHome"></span>
     <span class="nav-dot" id="navDot"></span>
   </button>
   <button class="nav-btn" data-action="go" data-screen="sSettings">
-    <img class="nav-icn" src="settings-2.png"><span id="navSettings"></span>
+    <svg class="nav-icn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    <span id="navSettings"></span>
   </button>
 </nav>
 
@@ -437,17 +440,75 @@ nav{position:fixed;bottom:0;left:0;right:0;height:72px;background:rgba(248,244,2
 </div>
 <div id="toast" class="toast"></div>
 
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script>
 'use strict';
+
+/* ── FIREBASE ── */
+const FB_CONFIG={
+  apiKey:'AIzaSyDFSFNAl1tMzCUPjG0nujDQ7-_K5AxorMk',
+  authDomain:'gay-studio.firebaseapp.com',
+  databaseURL:'https://gay-studio-default-rtdb.asia-southeast1.firebasedatabase.app',
+  projectId:'gay-studio',
+  storageBucket:'gay-studio.firebasestorage.app',
+  messagingSenderId:'557205678058',
+  appId:'1:557205678058:web:19df0a72a631bf36467493'
+};
+let db=null;
+async function fbInit(){
+  if(!FB_CONFIG.apiKey)return;
+  try{
+    firebase.initializeApp(FB_CONFIG);
+    db=firebase.database();
+    await fbLoad();
+  }catch(e){console.warn('Firebase init:',e);}
+}
+async function fbLoad(){
+  if(!db)return;
+  try{
+    const snap=await db.ref('/').get();
+    if(snap.exists()){
+      const d=snap.val();
+      if(d.settings)state.settings={...state.settings,...d.settings};
+      if(d.bookings)state.bookings=Object.values(d.bookings);
+      if(d.blacklist)state.blacklist=Object.values(d.blacklist);
+      if(d.gallery)state.gallery=Array.isArray(d.gallery)?d.gallery:Object.values(d.gallery);
+    }
+    localStorage.setItem(KEY,JSON.stringify(state));
+    const ac=document.querySelector('.screen.active');
+    if(ac?.id==='sHome')renderHome();
+    if(ac?.id==='sAdmin'&&adminAuthed)renderAdmin();
+    setLang(state.settings.lang||'he');
+  }catch(e){console.warn('Firebase load:',e);}
+}
+let fbTimer=null;
+function fbPush(){
+  if(!db)return;
+  clearTimeout(fbTimer);
+  fbTimer=setTimeout(async()=>{
+    try{
+      const bkObj={};state.bookings.forEach(b=>bkObj[b.id]=b);
+      const blObj={};state.blacklist.forEach(b=>blObj[b.phone.replace(/\D/g,'')]=b);
+      await db.ref('/').set({
+        settings:state.settings,
+        bookings:bkObj,
+        blacklist:blObj,
+        gallery:state.gallery
+      });
+    }catch(e){console.warn('Firebase push:',e);}
+  },600);
+}
+
 /* ── I18N ── */
 const S={
 he:{
-  heroTitle:'הסטודיו של גיא',heroSub:'ציפורניים מקצועיות • דימונה',bookBtn:'🗓️ קביעת תור',
+  heroTitle:'הסטודיו של גיא',heroSub:'ציפורניים מקצועיות • דימונה',bookBtn:'קביעת תור',
   devCredit:'נבנה על ידי @Danlivee',
   badge1:"ג'ל מקצועי",badge2:'אקריל',badge3:'עיצוב אמנותי',badge4:'זמינות מהירה',
   trustTitle:'סטריליות בראש סדר העדיפויות',trustBody:'כלים מעוקרים לכל טיפול · חומרים מקצועיים בלבד',
   secSvc:'שירותים',secGal:'גלריית עבודות',
-  stTitle:'⚙️ הגדרות',stApp:'מראה',stLang:'שפה',stAcct:'חשבון',stAbout:'סטודיו',
+  stTitle:'הגדרות',stApp:'מראה',stLang:'שפה',stAcct:'חשבון',stAbout:'סטודיו',
   loggedIn:'מחובר כמנהל',loggedOut:'לא מחובר',goAdmin:'פאנל ניהול ↗',
   btnLogout:'יציאה',btnLogin:'כניסה למנהל',btnForgot:'שכחתי סיסמה',editProfile:'עריכה',
   btnCall:'התקשר',location:'מרכז מסחרי דימונה',
@@ -461,7 +522,7 @@ he:{
   admPhoneLbl:'WhatsApp (קוד מדינה + מספר)',admPwdChangeLbl:'שינוי סיסמת מנהל',admSaveBtn:'שמור',
   admDataTitle:'ניהול נתונים',admExportBtn:'ייצוא JSON',admClearBtn:'מחק ישנות',
   waApiTitle:'WhatsApp Cloud API',waTokenLbl:'Access Token',waPhoneIdLbl:'Phone Number ID',
-  waSaveBtn:'שמור API',waTestBtn:'🔗 בדיקת חיבור',
+  waSaveBtn:'שמור API',waTestBtn:'בדיקת חיבור',
   waApiNote:'',
   waSteps:[
     {n:1,txt:'היכנסי ל-business.facebook.com',sub:'חשבון פייסבוק עסקי רגיל'},
@@ -470,12 +531,12 @@ he:{
     {n:4,txt:'העתיקי את Phone Number ID',sub:'מספר בן ~15 ספרות בדף API Setup'},
     {n:5,txt:'הדביקי כאן ולחצי שמור',sub:'לאחר מכן לחצי "בדיקת חיבור" לאימות'},
   ],
-  blAddTitle:'הוספה לרשימה השחורה',blPhoneLbl:'מספר טלפון',blNameLbl:'שם (אופציונלי)',blReasonLbl:'סיבה',blAddBtn:'🚫 הוסף',blListTitle:'רשימה שחורה',blEmpty:'אין לקוחות חסומים',blRemove:'הסר',
+  blAddTitle:'הוספה לרשימה השחורה',blPhoneLbl:'מספר טלפון',blNameLbl:'שם (אופציונלי)',blReasonLbl:'סיבה',blAddBtn:'הוסף',blListTitle:'רשימה שחורה',blEmpty:'אין לקוחות חסומים',blRemove:'הסר',
   navHome:'בית',navSettings:'הגדרות',
   stPending:'ממתינה',stConfirmed:'בטיפול',stCancelled:'בוטלה',stCompleted:'הושלמה',
   monNew:'חדשות',monProgress:'בטיפול',monDone:'הושלמו',
   monStartBtn:'התחל',monDoneBtn:'הושלם',monViewList:'list',monViewMon:'monitor',
-  actConfirmWA:'אשר',actCancel:'ביטול',actResend:'שלח שוב',actRemind:'תזכורת',actBan:'חסום',actComplete:'הושלם',
+  actConfirmWA:'אשר',actCancel:'ביטול',actResend:'שלח שוב',actRemind:'תזכורת',actBan:'חסום',actComplete:'הושלם',remindTmrBtn:'תזכורות מחר',
   toastBooked:'✅ נשלח!',toastFill:'⚠️ נא למלא את כל השדות',toastSaved:'✅ נשמר',
   toastImgAdded:'✅ תמונה נוספה',toastWrongPwd:'❌ סיסמה שגויה',toastConfirmed:'✅ אישור נשלח',
   toastLoggedOut:'👋 יצאת',toastWaSent:'📲 נשלח בוואטסאפ',toastWaFail:'❌ שגיאת API',
@@ -487,7 +548,7 @@ he:{
   wiz1Title:'בחרי שירות',wiz1Sub:'על מה תרצי לקבוע תור?',wiz2Title:'בחרי תאריך',wiz2Sub:'מתי נוח לך?',
   wiz3Title:'בחרי שעה',wiz3Sub:'',wiz4Title:'פרטים אישיים',wiz4Sub:'',wiz5Title:'אישור הזמנה',wiz5Sub:'הכל נראה טוב?',
   fName:'שם מלא',fPhone:'מספר טלפון',fNotes:'הערות (אופציונלי)',phName:'השם שלך',phNotes:'עיצוב מיוחד, צבע...',
-  nextBtn:'הבא →',submitBtn:'📲 הזמנה בוואטסאפ',
+  nextBtn:'הבא →',submitBtn:'הזמנה בוואטסאפ',
   morning:'בוקר',afternoon:'צהריים',evening:'ערב',
   cfSvc:'שירות',cfDate:'תאריך',cfTime:'שעה',cfName:'שם',cfPhone:'טלפון',cfNotes:'הערות',
   months:['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'],
@@ -497,12 +558,12 @@ he:{
   newBkMsg:(b,svc)=>`🆕 הזמנה חדשה!\n👤 ${b.name}\n📞 ${b.phone}\n💅 ${svc}\n📅 ${b.date} ${b.time}${b.notes?'\n📝 '+b.notes:''}`,
 },
 ru:{
-  heroTitle:'Студия Гая',heroSub:'Профессиональный маникюр • Димона',bookBtn:'🗓️ Записаться',
+  heroTitle:'Студия Гая',heroSub:'Профессиональный маникюр • Димона',bookBtn:'Записаться',
   devCredit:'Создано @Danlivee',
   badge1:'Гель',badge2:'Акрил',badge3:'Арт-дизайн',badge4:'Быстрая запись',
   trustTitle:'Стерильность — наш приоритет',trustBody:'Стерилизованные инструменты · Профессиональные материалы',
   secSvc:'Услуги',secGal:'Галерея работ',
-  stTitle:'⚙️ Настройки',stApp:'Внешний вид',stLang:'Язык',stAcct:'Аккаунт',stAbout:'Студия',
+  stTitle:'Настройки',stApp:'Внешний вид',stLang:'Язык',stAcct:'Аккаунт',stAbout:'Студия',
   loggedIn:'Вы вошли как администратор',loggedOut:'Не авторизованы',goAdmin:'Панель управления ↗',
   btnLogout:'Выйти',btnLogin:'Войти как администратор',btnForgot:'Забыл пароль',editProfile:'Изменить',
   btnCall:'Позвонить',location:'Торговый центр Димона',
@@ -516,7 +577,7 @@ ru:{
   admPhoneLbl:'WhatsApp (код + номер)',admPwdChangeLbl:'Сменить пароль',admSaveBtn:'Сохранить',
   admDataTitle:'Данные',admExportBtn:'Экспорт JSON',admClearBtn:'Очистить старые',
   waApiTitle:'WhatsApp Cloud API',waTokenLbl:'Access Token',waPhoneIdLbl:'Phone Number ID',
-  waSaveBtn:'Сохранить API',waTestBtn:'🔗 Проверить соединение',
+  waSaveBtn:'Сохранить API',waTestBtn:'Проверить соединение',
   waApiNote:'',
   waSteps:[
     {n:1,txt:'Зайди на business.facebook.com',sub:'Обычный аккаунт Facebook подойдёт'},
@@ -525,12 +586,12 @@ ru:{
     {n:4,txt:'Скопируй Phone Number ID',sub:'15-значный номер на той же странице'},
     {n:5,txt:'Вставь сюда и нажми Сохранить',sub:'Затем нажми "Проверить соединение"'},
   ],
-  blAddTitle:'Добавить в чёрный список',blPhoneLbl:'Телефон',blNameLbl:'Имя (необязательно)',blReasonLbl:'Причина',blAddBtn:'🚫 Заблокировать',blListTitle:'Чёрный список',blEmpty:'Список пуст',blRemove:'Удалить',
+  blAddTitle:'Добавить в чёрный список',blPhoneLbl:'Телефон',blNameLbl:'Имя (необязательно)',blReasonLbl:'Причина',blAddBtn:'Заблокировать',blListTitle:'Чёрный список',blEmpty:'Список пуст',blRemove:'Удалить',
   navHome:'Главная',navSettings:'Настройки',
   stPending:'Ожидает',stConfirmed:'В работе',stCancelled:'Отменена',stCompleted:'Выполнена',
   monNew:'Новые',monProgress:'В работе',monDone:'Готово',
   monStartBtn:'Начать',monDoneBtn:'Готово',monViewList:'list',monViewMon:'monitor',
-  actConfirmWA:'Подтвердить',actCancel:'Отменить',actResend:'Повторить',actRemind:'Напомнить',actBan:'Блок',actComplete:'Выполнено',
+  actConfirmWA:'Подтвердить',actCancel:'Отменить',actResend:'Повторить',actRemind:'Напомнить',actBan:'Блок',actComplete:'Выполнено',remindTmrBtn:'Напоминания',
   toastBooked:'✅ Отправлено!',toastFill:'⚠️ Заполните все поля',toastSaved:'✅ Сохранено',
   toastImgAdded:'✅ Фото добавлено',toastWrongPwd:'❌ Неверный пароль',toastConfirmed:'✅ Подтверждение отправлено',
   toastLoggedOut:'👋 Вы вышли',toastWaSent:'📲 Отправлено через WA API',toastWaFail:'❌ Ошибка API',
@@ -542,7 +603,7 @@ ru:{
   wiz1Title:'Выберите услугу',wiz1Sub:'Что вас интересует?',wiz2Title:'Выберите дату',wiz2Sub:'Когда удобно?',
   wiz3Title:'Выберите время',wiz3Sub:'',wiz4Title:'Ваши данные',wiz4Sub:'',wiz5Title:'Подтверждение',wiz5Sub:'Всё верно?',
   fName:'Полное имя',fPhone:'Телефон',fNotes:'Примечания',phName:'Ваше имя',phNotes:'Цвет, дизайн...',
-  nextBtn:'Далее →',submitBtn:'📲 Записаться в WhatsApp',
+  nextBtn:'Далее →',submitBtn:'Записаться в WhatsApp',
   morning:'Утро',afternoon:'День',evening:'Вечер',
   cfSvc:'Услуга',cfDate:'Дата',cfTime:'Время',cfName:'Имя',cfPhone:'Телефон',cfNotes:'Заметки',
   months:['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
@@ -582,7 +643,7 @@ function loadState(){
     return{...DEFAULTS,...s,blacklist:s.blacklist||[],settings:{...DEFAULTS.settings,...(s.settings||{})},user:s.user||null};
   }catch{return JSON.parse(JSON.stringify(DEFAULTS));}
 }
-function save(){localStorage.setItem(KEY,JSON.stringify(state));}
+function save(){localStorage.setItem(KEY,JSON.stringify(state));fbPush();}
 
 /* ── WHATSAPP CLOUD API ── */
 async function waApiSend(to,message){
@@ -613,7 +674,7 @@ function addToBlacklist(phone,name,reason){
   state.blacklist.push({phone:p,name:name||'',reason:reason||'',addedAt:new Date().toISOString()});
   save();showToast(t('toastBanned'));
 }
-function removeFromBlacklist(idx){state.blacklist.splice(idx,1);save();renderAdmBlacklist();showToast(t('toastUnbanned'));}
+function removeFromBlacklist(idx){const phone=state.blacklist[idx]?.phone?.replace(/\D/g,'');state.blacklist.splice(idx,1);save();if(db&&phone)db.ref(`blacklist/${phone}`).remove().catch(()=>{});renderAdmBlacklist();showToast(t('toastUnbanned'));}
 
 /* ── LANG ── */
 function setLang(lang){
@@ -646,7 +707,7 @@ function renderHome(){
   $('homeServices').innerHTML=state.services.map(s=>{
     const name=ru&&s.nameRu?s.nameRu:s.name,desc=ru&&s.descRu?s.descRu:s.desc;
     return`<div class="service-card" data-action="tryBookSvc" data-id="${s.id}">
-      <div class="svc-icon">${ic('wand-sparkles',28)}</div><div style="flex:1"><div class="svc-name">${name}</div><div class="svc-desc">${desc}</div></div>
+      <div style="flex:1"><div class="svc-name">${name}</div><div class="svc-desc">${desc}</div></div>
       <div class="svc-price">${s.price}</div></div>`;
   }).join('');
   renderGallery();updateBanner();
@@ -660,10 +721,20 @@ function renderGallery(){
 }
 function getMyBk(){return state.user?state.bookings.filter(b=>b.phone===state.user.phone&&b.status!=='cancelled'):[];}
 function updateBanner(){
-  const n=getMyBk().length,banner=$('actBkBanner'),dot=$('navDot');
-  if(n>0){banner.classList.add('on');$t('actBkTxt',t('actBkTxt'));$t('actBkBtn',t('actBkBtn'));}
-  else banner.classList.remove('on');
-  if(dot)dot.classList.toggle('on',n>0);
+  const bks=getMyBk(),banner=$('actBkBanner'),dot=$('navDot');
+  if(bks.length>0){
+    banner.classList.add('on');
+    const today=new Date().toISOString().slice(0,10);
+    const next=bks.filter(b=>b.date>=today).sort((a,b)=>a.date.localeCompare(b.date)||(a.time||'').localeCompare(b.time||''))[0]||bks[0];
+    const ru=state.settings.lang==='ru';
+    const svc=state.services.find(s=>s.id===next.serviceId);
+    const svcName=svc?(ru&&svc.nameRu?svc.nameRu:svc.name):'';
+    const[,mm,dd]=next.date.split('-');
+    const dateStr=`${dd}.${mm}`;
+    $t('actBkTxt',`${svcName} · ${dateStr} · ${next.time}`);
+    $t('actBkBtn',t('actBkBtn'));
+  }else banner.classList.remove('on');
+  if(dot)dot.classList.toggle('on',bks.length>0);
 }
 
 /* ── REGISTRATION ── */
@@ -730,7 +801,7 @@ function renderWiz1(){
   $('wizS1').innerHTML=`<div class="wiz-h">${t('wiz1Title')}</div><div class="wiz-sub">${t('wiz1Sub')}</div>`+
     state.services.map(s=>{const name=ru&&s.nameRu?s.nameRu:s.name,desc=ru&&s.descRu?s.descRu:s.desc;
     return`<div class="wiz-svc${wizData.serviceId===s.id?' sel':''}" data-action="wizSelSvc" data-id="${s.id}">
-      <div class="wi">${ic('wand-sparkles',32)}</div><div style="flex:1"><div class="wn">${name}</div><div class="wd">${desc}</div></div>
+      <div style="flex:1"><div class="wn">${name}</div><div class="wd">${desc}</div></div>
       <div class="wp">${s.price}</div></div>`;}).join('');
 }
 function renderWiz2(){
@@ -808,7 +879,7 @@ function renderSettings(){
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===(state.settings.lang||'he')));
   const ac=$('accountSection');
   if(state.user){
-    ac.innerHTML=`<div class="s-row"><div><div class="s-label">👤 ${state.user.name}</div><div class="s-sub">📞 ${state.user.phone}</div></div>
+    ac.innerHTML=`<div class="s-row"><div><div class="s-label" style="display:flex;align-items:center;gap:7px">${ic('users',16)} ${state.user.name}</div><div class="s-sub" style="display:flex;align-items:center;gap:5px;margin-top:3px">${ic('phone',13)} ${state.user.phone}</div></div>
       <button class="btn btn-ghost btn-sm" data-action="editProfile">${t('editProfile')}</button></div>
       ${adminAuthed?`<div class="s-row"><div class="s-label">${t('loggedIn')}</div></div>
       <div class="s-row" style="border:none"><button class="btn btn-ghost btn-sm" data-action="goAdmin">${t('goAdmin')}</button>
@@ -826,7 +897,7 @@ function renderSettings(){
 
 /* ── ADMIN ── */
 function renderAdmin(){
-  const ids={admLoginTitle:'admLoginTitle',admPwdLbl:'admPwdLbl',admLoginBtn:'admLoginBtn',admBackBtn:'admBackBtn',admDashTitle:'admDashTitle',admLogoutBtn:'admLogout',admTabBk:'tabBk',admTabAcc:'tabAcc',admTabBl:'tabBl',admTabGal:'tabGal',admTabSet:'tabSet',fAll:'fAll',fPend:'fPend',fConf:'fConf',admUploadTitle:'admUploadTitle',admUploadLbl:'admUploadLbl',admCaptionLbl:'admCaptionLbl',admUploadBtn:'admUploadBtn',admExistingTitle:'admExistingTitle',admSetTitle:'admSetTitle',admPhoneLbl:'admPhoneLbl',admPwdChangeLbl:'admPwdChangeLbl',admSaveBtn:'admSaveBtn',admDataTitle:'admDataTitle',admExportBtn:'admExportBtn',admClearBtn:'admClearBtn',waApiTitle:'waApiTitle',waTokenLbl:'waTokenLbl',waPhoneIdLbl:'waPhoneIdLbl',waSaveBtn:'waSaveBtn',waTestBtn:'waTestBtn',blAddTitle:'blAddTitle',blPhoneLbl:'blPhoneLbl',blNameLbl:'blNameLbl',blReasonLbl:'blReasonLbl',blAddBtn:'blAddBtn',blListTitle:'blListTitle'};
+  const ids={admLoginTitle:'admLoginTitle',admPwdLbl:'admPwdLbl',admLoginBtn:'admLoginBtn',admBackBtn:'admBackBtn',admDashTitle:'admDashTitle',admLogoutBtn:'admLogout',admTabBk:'tabBk',admTabAcc:'tabAcc',admTabBl:'tabBl',admTabGal:'tabGal',admTabSet:'tabSet',fAll:'fAll',fPend:'fPend',fConf:'fConf',remindTmrLbl:'remindTmrBtn',admUploadTitle:'admUploadTitle',admUploadLbl:'admUploadLbl',admCaptionLbl:'admCaptionLbl',admUploadBtn:'admUploadBtn',admExistingTitle:'admExistingTitle',admSetTitle:'admSetTitle',admPhoneLbl:'admPhoneLbl',admPwdChangeLbl:'admPwdChangeLbl',admSaveBtn:'admSaveBtn',admDataTitle:'admDataTitle',admExportBtn:'admExportBtn',admClearBtn:'admClearBtn',waApiTitle:'waApiTitle',waTokenLbl:'waTokenLbl',waPhoneIdLbl:'waPhoneIdLbl',waSaveBtn:'waSaveBtn',waTestBtn:'waTestBtn',blAddTitle:'blAddTitle',blPhoneLbl:'blPhoneLbl',blNameLbl:'blNameLbl',blReasonLbl:'blReasonLbl',blAddBtn:'blAddBtn',blListTitle:'blListTitle'};
   Object.entries(ids).forEach(([el,k])=>$t(el,t(k)));
   if(!adminAuthed){$('adminLogin').style.display='flex';$('adminDash').style.display='none';}
   else{$('adminLogin').style.display='none';$('adminDash').style.display='block';
@@ -865,7 +936,34 @@ function updateWaStatus(){
   if(hasWaApi()){el.className='wa-status ok';el.textContent='🟢 Online';}
   else{el.className='wa-status off';el.textContent='⚪ Offline';}
 }
-function doAdminLogin(){if($('adminPwd').value===state.settings.adminPwd){adminAuthed=true;$('adminPwd').value='';renderAdmin();}else showToast(t('toastWrongPwd'));}
+/* ── AUTO REMIND ── */
+async function autoRemind(manual){
+  if(!hasWaApi()){if(manual)showToast(t('toastFill'));return;}
+  const tom=new Date();tom.setDate(tom.getDate()+1);
+  const tDate=tom.toISOString().slice(0,10);
+  const ru=state.settings.lang==='ru';
+  const pending=state.bookings.filter(b=>b.date===tDate&&b.status!=='cancelled'&&b.status!=='completed'&&!b.reminderSent);
+  if(!pending.length){if(manual)showToast(ru?'Нет записей на завтра':'אין תורים מחר');return;}
+  const sorted=[...pending].sort((a,b)=>(a.time||'').localeCompare(b.time||''));
+  const ownerLines=sorted.map(b=>{
+    const svc=state.services.find(s=>s.id===b.serviceId);
+    const svcName=svc?(ru&&svc.nameRu?svc.nameRu:svc.name):'';
+    return`• ${b.time} — ${b.name} (${svcName})`;
+  });
+  let sent=0;
+  for(const b of pending){
+    const svc=state.services.find(s=>s.id===b.serviceId);
+    const svcNameHe=svc?svc.name:'';
+    const ok=await waApiSend(b.phone,S.he.reminderMsg(b,svcNameHe));
+    if(ok){b.reminderSent=true;sent++;}
+  }
+  const ownerMsg=(ru?`⏰ Завтра (${tDate}) записи:\n`:`⏰ מחר (${tDate}) תורים:\n`)+ownerLines.join('\n');
+  await waApiSend(state.settings.phone,ownerMsg);
+  save();
+  if(bkView==='list')renderBkList();
+  if(sent>0)showToast(ru?`✅ Отправлено ${sent} напоминаний`:`✅ נשלחו ${sent} תזכורות`);
+}
+function doAdminLogin(){if($('adminPwd').value===state.settings.adminPwd){adminAuthed=true;$('adminPwd').value='';renderAdmin();setTimeout(()=>autoRemind(false),700);}else showToast(t('toastWrongPwd'));}
 function admTab(tab){
   ['Bookings','Accounts','Blacklist','Gallery','Settings'].forEach(n=>$('tab'+n).style.display=tab===n.toLowerCase()?'':'none');
   document.querySelectorAll('.adm-tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
@@ -932,7 +1030,7 @@ function renderBkList(){
     const blked=isBlacklisted(b.phone);
     return`<div class="bk-item ${b.status}">
       <div class="bk-meta"><div class="bk-name">${b.name}${blked?' 🚫':''}</div><div class="bk-lbl ${sc[b.status]||''}">${sl[b.status]||b.status}</div></div>
-      <div class="bk-detail">${ic('phone')} ${b.phone}<br>${ic('wand-sparkles')} ${svc?svc.name:'—'}<br>${ic('waypoints')} ${b.date} ${b.time}${b.notes?`<br>${ic('notepad-text')} `+b.notes:''}</div>
+      <div class="bk-detail">${ic('phone')} ${b.phone}<br>${ic('wand-sparkles')} ${svc?svc.name:'—'}<br>${ic('waypoints')} ${b.date} ${b.time}${b.notes?`<br>${ic('notepad-text')} `+b.notes:''}${b.reminderSent?`<br><span style="font-size:10px;color:var(--success);font-weight:700;display:inline-flex;align-items:center;gap:3px;margin-top:2px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> ${state.settings.lang==='ru'?'Напоминание отправлено':'תזכורת נשלחה'}</span>`:''}</div>
       <div class="bk-actions">
         ${b.status==='pending'?`<button class="btn btn-wa btn-sm" data-action="confirmWA" data-bid="${b.id}">${ic('check-check')} ${t('actConfirmWA')}</button>
           <button class="btn btn-ghost btn-sm" data-action="cancelBk" data-bid="${b.id}">${t('actCancel')}</button>`:''}
@@ -965,7 +1063,7 @@ async function sendReminder(id){
   else{window.open(`https://wa.me/${b.phone.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`,'_blank');}
 }
 function cancelBk(id){const b=state.bookings.find(x=>x.id==id);if(b){b.status='cancelled';save();renderBkList();}}
-function deleteBk(id){if(!confirm(t('deleteQ')))return;state.bookings=state.bookings.filter(x=>x.id!=id);save();renderBkList();}
+function deleteBk(id){if(!confirm(t('deleteQ')))return;state.bookings=state.bookings.filter(x=>x.id!=id);save();if(db)db.ref(`bookings/${id}`).remove().catch(()=>{});renderBkList();}
 function banClient(phone,name){addToBlacklist(phone,name,'');state.bookings.filter(b=>b.phone===phone&&b.status==='pending').forEach(b=>b.status='cancelled');save();renderBkList();renderAdmAccounts();}
 function renderAdmAccounts(){
   const el=$('accountsList');
@@ -1036,7 +1134,7 @@ async function testWaApi(){
   }catch{showToast(t('toastWaFail'));}
 }
 function exportData(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(state,null,2)],{type:'application/json'}));a.download='guy-studio-backup.json';a.click();}
-function clearOldBookings(){if(!confirm(t('clearQ')))return;const cut=Date.now()-30*24*60*60*1000;state.bookings=state.bookings.filter(b=>new Date(b.createdAt).getTime()>cut);save();renderBkList();}
+function clearOldBookings(){if(!confirm(t('clearQ')))return;const cut=Date.now()-30*24*60*60*1000;const old=state.bookings.filter(b=>new Date(b.createdAt).getTime()<=cut);state.bookings=state.bookings.filter(b=>new Date(b.createdAt).getTime()>cut);save();if(db)old.forEach(b=>db.doc(`bookings/${b.id}`).delete().catch(()=>{}));renderBkList();}
 function showForgot(){$('modalContent').innerHTML=`<h2 style="margin-bottom:14px">${t('forgotTitle')}</h2><p style="color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:20px">${t('forgotBody')}</p><a href="https://wa.me/${state.settings.phone}" class="btn btn-wa btn-full" target="_blank">📲 WhatsApp</a><br><br><button class="btn btn-ghost btn-full" data-action="closeModal">${t('back')}</button>`;$('modalBg').classList.remove('hidden');}
 
 /* ── LOGO TAP (tap-tap…pause…tap-tap) ── */
@@ -1081,6 +1179,7 @@ document.addEventListener('click',e=>{
     case 'adminLogout':adminAuthed=false;goTo('sHome');break;
     case 'admTab':admTab(el.dataset.tab);break;
     case 'filterBk':bkFilter=el.dataset.filter;if(bkView==='list')renderBkList();else renderMonitor();break;
+    case 'remindTmr':autoRemind(true);break;
     case 'toggleBkView':toggleBkView();break;
     case 'advanceBk':advanceBk(el.dataset.bid);break;
     case 'completeBk':completeBk(el.dataset.bid);renderBkList();break;
@@ -1119,6 +1218,7 @@ document.addEventListener('touchstart',e=>{
 /* ── INIT ── */
 setLang(state.settings.lang||'he');
 goTo('sHome');
+fbInit();
 </script>
 </body>
 </html>
